@@ -56,7 +56,7 @@
             <tbody>
             {% for ad in craft.adWizard.ads.orderBy('title').all() %}
                 {% set group = craft.adWizard.getGroupById(ad.groupId) %}
-                <tr class="{{ 'now' | date > ad.endDate or (ad.maxViews != 0 and ad.totalViews >= ad.totalViews) ? 'expired' : '' }}">
+                <tr class="{{ 'now' | date > ad.endDate | date or (ad.maxViews != 0 and ad.totalViews >= ad.totalViews) ? 'expired' : '' }}">
                     <td>{{ group.name }}</td>
                     <td><a href="{{ url('ad-wizard/ads/' ~ group.handle ~ '/' ~ ad.id) }}">{{ ad.title }}</a></td>
                     <td class="aw-total aw-views col-divider">{{ craft.adWizard.monthTotalViews(ad.id, thisYear, thisMonth) }}</td>
